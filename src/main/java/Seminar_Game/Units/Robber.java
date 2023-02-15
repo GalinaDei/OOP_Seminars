@@ -1,72 +1,13 @@
 package Seminar_Game.Units;
 
 public class Robber extends Base_Unit{
-    public Robber(int health, int strength, int speed, int accuracy, int food, int drink) {
-        super(health = 1000, strength = 90, speed = 80, accuracy = 30, food = 100, drink = 100);
+    public Robber(String name, int health, int damage, int strength, int speed, int accuracy, int food, int drink, int def, int attack) {
+        super(name, health, damage, strength, speed, accuracy, food, drink, def, attack);
     }
-    public  int robbery(){
-        super.damage += 20;
-        return super.damage;
+    public Robber(String name) {
+        super(name, 1000, 0, 90, 50, 40, 100, 100, 50, 0);
+        this.name = name;
     }
-
-    @Override
-    public void setName(String name) {super.name = name;}
-    @Override
-    public String getName(){ return this.name;}
-    @Override
-    public void setHealth(int hpOrPrayer) { super.health += hpOrPrayer; }
-    @Override
-    public int getHealth() {
-        return this.health;
-    }
-    @Override
-    public int getDamage() {
-        return this.damage;
-    }
-    @Override
-    public int getStrength(){
-        return this.strength;
-    }
-    @Override
-    public int getSpeed() {
-        return this.speed;
-    }
-    @Override
-    public int getAccuracy() {
-        return this.accuracy;
-    }
-    @Override
-    public void setFood(int food){
-        this.food += food;
-    }
-    @Override
-    public int getFood() {
-        return this.food;
-    }
-    @Override
-    public void setDrink(int drink){
-        this.drink += drink;
-    }
-    @Override
-    public int getDrink() {
-        return this.drink;
-    }
-    @Override
-    public int attack(int strength, int accuracy, int speed){
-        super.damage = strength + accuracy + speed;
-        return super.damage;
-    }
-
-    @Override
-    public  void dreaming(){
-
-    }
-    @Override
-    public void walking(){
-
-    }
-    @Override
-    public void running(){
-
+    public void  robbery(){;
     }
 }

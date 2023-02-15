@@ -1,65 +1,54 @@
 package Seminar_Game.Units;
 
-public class Base_Unit {
-    protected String name;
-    protected int health;
-    protected  int damage;
-    protected int strength;
-    protected  int speed;
-    protected int accuracy;
-    protected int food;
-    protected int drink;
+public abstract class Base_Unit {
+    public String name;
+    protected int health, damage, strength, speed, accuracy, food, drink, def, attack;
 
-    protected Base_Unit(int health, int strength, int speed, int accuracy, int food, int drink) {
+    public Base_Unit(String name, int health, int damage, int strength, int speed, int accuracy, int food, int drink, int def, int attack) {
+        this.name = name;
         this.health = health;
+        this.damage = damage;
         this.strength = strength;
         this.speed = speed;
         this.accuracy = accuracy;
         this.food = food;
         this.drink = drink;
+        this.def = def;
+        this.attack = attack;
     }
-    protected void setName(String name){
+
+    public void setName(String name){
         this.name = name;
     }
-    protected String getName(){
+    public String getName(){
         return name;
     }
-    protected int getDamage(){
-        return damage;
-    }
-    protected int getStrength(){
-        return strength;
-    }
-    protected int getSpeed(){
-        return speed;
-    }
-    protected int getAccuracy(){
-        return accuracy;
-    }
-    protected void setFood(int food){
-        this.food += food;
-    }
-    protected int getFood(){
-        return food;
-    }
-    protected void setDrink(int food){
-        this.drink += drink;
-    }
-    protected int getDrink(){ return drink; }
-    protected void setHealth(int hpOrPrayer){ this.health += hpOrPrayer; }
-    protected int getHealth(){ return health; }
+    public void setHealth(int health) {this.health = health;}
+    public int getHealth() {return health;}
 
-    protected  void dreaming(){
+    public void setDamage(int damage, int def) {
+        this.damage = damage - def;
+    }
+    public int getDamage(){return damage;}
+    public int getStrength(){ return strength;}
+    public int getSpeed(){return speed;}
+    public int getAccuracy(){return accuracy;}
+    public void setFood(int food){this.food += food;}
+    public int getFood(){return food;}
+    public void setDrink(int food){this.drink += drink;}
+    public int getDrink(){ return drink; }
+    public void setDef(int def) {this.def = def;}
+    public int getDef() {return def;}
+
+    public   void dreaming(){
 
     }
-    protected void walking(){
+    public void walking(){
 
     }
-    protected void running(){
+    public void running(){
 
     }
-    protected int attack(int strength, int accuracy, int speed){
-        return damage;
-    }
-
+    public void setAttack(int strength, int accuracy, int speed) { this.attack = strength+accuracy+speed; }
+    public int getAttack() {return attack;}
 }

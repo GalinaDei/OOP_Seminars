@@ -4,14 +4,22 @@ public class Farmer extends Base_Unit{
     private int cartridges;
     private int arrows;
     private int vily;
-    public Farmer(int health, int strength, int speed, int accuracy, int food, int drink) {
-        super(health, strength, speed, accuracy, food, drink);
+
+    public Farmer(String name, int health, int damage, int strength, int speed, int accuracy, int food, int drink,
+                  int def, int attack, int cartridges, int arrows, int vily) {
+        super(name, health, damage, strength, speed, accuracy, food, drink, def, attack);
+        this.cartridges = cartridges;
+        this.arrows = arrows;
+        this.vily = vily;
+    }
+    public Farmer(String name){
+        super(name, 1000, 0, 50, 30, 30, 100, 100, 20, 0);
+        this.name = name;
+        this.cartridges = 100;
+        this.arrows = 100;
+        this.vily = 1;
     }
 
-    public void setVily(int vily) { this.vily = vily; }
-    public int getVily(){
-        return this.vily;
-    }
     public int giveFood(){
         this.food = 100;
         return food;
@@ -20,6 +28,7 @@ public class Farmer extends Base_Unit{
         this.drink = 100;
         return drink;
     }
+    public int getVily(){ return this.vily;}
     public int giveCartridge(){
         this.cartridges = 100;
         return cartridges;
@@ -28,62 +37,4 @@ public class Farmer extends Base_Unit{
         this.arrows = 100;
         return arrows;
     }
-    @Override
-    public void setName(String name) {
-        super.name = name;
-    }
-    @Override
-    public String getName() {
-        return this.name;
-    }
-
-    @Override
-    protected void setHealth(int hp) { super.health += hp; }
-    @Override
-    public int getHealth() {
-        return this.health;
-    }
-    @Override
-    public int getDamage() {
-        return this.damage;
-    }
-    @Override
-    public int getStrength(){
-        return this.strength;
-    }
-    @Override
-    public int getSpeed() {
-        return this.speed;
-    }
-    @Override
-    public int getAccuracy() {
-        return this.accuracy;
-    }
-    @Override
-    public int getFood() {
-        return this.food;
-    }
-    @Override
-    public int getDrink() {
-        return this.drink;
-    }
-    @Override
-    public int attack(int strength, int accuracy, int speed){
-        super.damage = strength + accuracy + speed;
-        return super.damage;
-    }
-
-    @Override
-    public  void dreaming(){
-
-    }
-    @Override
-    public void walking(){
-
-    }
-    @Override
-    public void running(){
-
-    }
-
 }

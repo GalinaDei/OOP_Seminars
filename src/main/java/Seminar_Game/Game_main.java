@@ -4,46 +4,53 @@ import Seminar_Game.Units.*;
 
 public class Game_main {
     public static void main(String[] args) {
-        Farmer farmer1 = new Farmer(1000, 50, 30, 20, 100, 100);
-        farmer1.setName("Mary");
-        System.out.println("Name: "+ farmer1.getName()+"; "+String.format("attack: %d; health: %d; speed: %d; accuracy: %d; food: %d; drink: %d",
-                farmer1.attack(20, 20, 30),farmer1.getHealth(),farmer1.getSpeed(),farmer1.getAccuracy(),farmer1.getFood(),farmer1.getDrink()));
-
-        Crossbow_man crossbowMan = new Crossbow_man(1000,40, 90, 90, 100, 0);
-        crossbowMan.setName("Yan");
-        crossbowMan.setArrows(farmer1.giveArrows());
-        crossbowMan.setDrink(farmer1.getDrink());
-        System.out.println("Name: "+ crossbowMan.getName()+"; "+String.format("attack: %d; health: %d; speed: %d; accuracy: %d; food: %d; drink: %d; cartridges: %d",
-                crossbowMan.attack(40, 90, 90),crossbowMan.getHealth(),crossbowMan.getSpeed(),crossbowMan.getAccuracy(),crossbowMan.getFood(),crossbowMan.getDrink(), crossbowMan.getArrows()));
-
-        Magician magician1 = new Magician(1000,20, 50, 40,100,100);
-        magician1.setName("Margo");
-        magician1.setMana(100);
-        magician1.makeSpell();
-        System.out.println("Name: "+ magician1.getName()+"; "+String.format("attack: %d; health: %d; speed: %d; accuracy: %d; food: %d; drink: %d; mana: %d",
-                magician1.attack(20, 40, 50),magician1.getHealth(),magician1.getSpeed(),magician1.getAccuracy(),magician1.getFood(),magician1.getDrink(), magician1.getMana()));
-
-        Monk monk1 = new Monk(1000, 20, 20, 50, 100, 100);
-        monk1.setName("Saruman");
-        monk1.makePrayer();
-        System.out.println("Name: "+ monk1.getName()+"; "+String.format("attack: %d; health: %d; speed: %d; accuracy: %d; food: %d; drink: %d; prayer: %d",
-                monk1.attack(20, 50, 20),monk1.getHealth(),monk1.getSpeed(),monk1.getAccuracy(),monk1.getFood(),monk1.getDrink(), monk1.makePrayer()));
-
-        Robber robber1 = new Robber(1000,90,80,30,100,100);
-        robber1.setName("Buba");
-        System.out.println("Name: "+ robber1.getName()+"; "+String.format("attack: %d; health: %d; speed: %d; accuracy: %d; food: %d; drink: %d",
-                robber1.attack(90, 30, 80),robber1.getHealth(),robber1.getSpeed(),robber1.getAccuracy(),robber1.getFood(),robber1.getDrink()));
-
-        Sniper sniper1 = new Sniper(1000, 30, 90, 100, 10, 100);
-        sniper1.setName("John");
-        sniper1.setCartridges(farmer1.giveCartridge());
-        sniper1.setFood(farmer1.getFood());
-        System.out.println("Name: "+ sniper1.getName()+"; "+String.format("attack: %d; health: %d; speed: %d; accuracy: %d; food: %d; drink: %d; cartridges: %d",
-                sniper1.attack(30, 100, 90),sniper1.getHealth(),sniper1.getSpeed(),sniper1.getAccuracy(),sniper1.getFood(),sniper1.getDrink(), sniper1.getCartridges()));
-
-        Spearman spearman1 = new Spearman(1000,90,90,80,100,100);
-        spearman1.setName("Ron");
-        System.out.println("Name: "+ spearman1.getName()+"; "+String.format("attack: %d; health: %d; speed: %d; accuracy: %d; food: %d; drink: %d",
-                spearman1.attack(30, 100, 90),spearman1.getHealth(),spearman1.getSpeed(),spearman1.getAccuracy(),spearman1.getFood(),spearman1.getDrink()));
+        Farmer farmer1 = new Farmer("");
+        farmer1.setName("John");
+        farmer1.setAttack(50,30,30);
+        System.out.println("Name: "+ farmer1.getName()+"; "+String.format("attack: %d; health: %d; damage: %d; strength: %d; speed: %d;" +
+                        " accuracy: %d; food: %d; drink: %d; def: %d", farmer1.getAttack(),farmer1.getHealth(),
+                        farmer1.getDamage(),farmer1.getStrength(),farmer1.getSpeed(),farmer1.getAccuracy(),farmer1.getFood(),farmer1.getDrink(),
+                        farmer1.getDef()));
+        Crossbow_man crossbowMan1 = new Crossbow_man("");
+        crossbowMan1.setName("Ivan");
+        crossbowMan1.setAttack(80,80,80);
+        System.out.println("Name: "+ crossbowMan1.getName()+"; "+String.format("attack: %d; health: %d; damage: %d; strength: %d; speed: %d;" +
+                        " accuracy: %d; food: %d; drink: %d; def: %d; arrows: %d; crossbow: %d", crossbowMan1.getAttack(),crossbowMan1.getHealth(),
+                crossbowMan1.getDamage(),crossbowMan1.getStrength(),crossbowMan1.getSpeed(),crossbowMan1.getAccuracy(),crossbowMan1.getFood(),crossbowMan1.getDrink(),
+                crossbowMan1.getDef(), crossbowMan1.getArrows(), crossbowMan1.getCrossbow()));
+        Magician magician1 = new Magician("");
+        magician1.setName("Mara");
+        System.out.println("Name: "+ magician1.getName()+"; "+String.format("attack: %d; health: %d; damage: %d; strength: %d; speed: %d;" +
+                        " accuracy: %d; food: %d; drink: %d; def: %d; mana: %d", magician1.getAttack(),magician1.getHealth(),
+                magician1.getDamage(),magician1.getStrength(),magician1.getSpeed(),magician1.getAccuracy(),magician1.getFood(),magician1.getDrink(),
+                magician1.getDef(), magician1.getMana()));
+        Monk monk1 = new Monk("");
+        monk1.setName("Tom");
+        monk1.setAttack(40,50,30);
+        System.out.println("Name: "+ monk1.getName()+"; "+String.format("attack: %d; health: %d; damage: %d; strength: %d; speed: %d;" +
+                        " accuracy: %d; food: %d; drink: %d; def: %d; prayer: %d", monk1.getAttack(),monk1.getHealth(),
+                monk1.getDamage(),monk1.getStrength(),monk1.getSpeed(),monk1.getAccuracy(),monk1.getFood(),monk1.getDrink(),
+                monk1.getDef(), monk1.makePrayer()));
+        Robber robber1 = new Robber("");
+        robber1.setName("Robin");
+        robber1.setAttack(90,40,50);
+        System.out.println("Name: "+ robber1.getName()+"; "+String.format("attack: %d; health: %d; damage: %d; strength: %d; speed: %d;" +
+                        " accuracy: %d; food: %d; drink: %d; def: %d", robber1.getAttack(),robber1.getHealth(),
+                robber1.getDamage(),robber1.getStrength(),robber1.getSpeed(),robber1.getAccuracy(),robber1.getFood(),robber1.getDrink(),
+                robber1.getDef()));
+        Sniper sniper1 = new Sniper("");
+        sniper1.setName("Kolt");
+        sniper1.setAttack(60,100,90);
+        System.out.println("Name: "+ sniper1.getName()+"; "+String.format("attack: %d; health: %d; damage: %d; strength: %d; speed: %d;" +
+                        " accuracy: %d; food: %d; drink: %d; def: %d; gun: %d", sniper1.getAttack(),sniper1.getHealth(),
+                sniper1.getDamage(),sniper1.getStrength(),sniper1.getSpeed(),sniper1.getAccuracy(),sniper1.getFood(),sniper1.getDrink(),
+                sniper1.getDef(), sniper1.getGan()));
+        Spearman spearman1 = new Spearman("");
+        spearman1.setName("Georg");
+        spearman1.setAttack(100,60,80);
+        System.out.println("Name: "+ spearman1.getName()+"; "+String.format("attack: %d; health: %d; damage: %d; strength: %d; speed: %d;" +
+                        " accuracy: %d; food: %d; drink: %d; def: %d; gun: %d", spearman1.getAttack(),spearman1.getHealth(),
+                spearman1.getDamage(),spearman1.getStrength(),spearman1.getSpeed(),spearman1.getAccuracy(),spearman1.getFood(),spearman1.getDrink(),
+                spearman1.getDef(), spearman1.getSpear()));
     }
 }

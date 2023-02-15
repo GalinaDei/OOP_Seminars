@@ -1,70 +1,18 @@
 package Seminar_Game.Units;
 
 public class Spearman extends Base_Unit{
-    public Spearman(int health, int strength, int speed, int accuracy, int food, int drink) {
-        super(health=1000, strength=90, speed=90, accuracy=80, food=100, drink=100);
-    }
-    public void setName(String name) {
-        super.name = name;
-    }
-    @Override
-    public String getName() {
-        return this.name;
-    }
-    @Override
-    public void setHealth(int hpOrPrayer) { super.health += hpOrPrayer; }
-    @Override
-    public int getHealth() {
-        return this.health;
-    }
-    @Override
-    public int getDamage() {
-        return this.damage;
-    }
-    @Override
-    public int getStrength(){
-        return this.strength;
-    }
-    @Override
-    public int getSpeed() {
-        return this.speed;
-    }
-    @Override
-    public int getAccuracy() {
-        return this.accuracy;
-    }
-    @Override
-    public void setFood(int food){
-        this.food += food;
-    }
-    @Override
-    public int getFood() {
-        return this.food;
-    }
-    @Override
-    public void setDrink(int drink){
-        this.drink += drink;
-    }
-    @Override
-    public int getDrink() {
-        return this.drink;
-    }
-    @Override
-    public int attack(int strength, int accuracy, int speed){
-        super.damage = strength + accuracy + speed;
-        return super.damage;
-    }
+    int spear;
 
-    @Override
-    public  void dreaming(){
-
+    public Spearman(String name, int health, int damage, int strength, int speed, int accuracy, int food, int drink, int def,
+                    int attack, int spear) {
+        super(name, health, damage, strength, speed, accuracy, food, drink, def, attack);
+        this.spear = spear;
     }
-    @Override
-    public void walking(){
-
+    public Spearman(String name) {
+        super(name, 1000, 0, 100, 80, 60, 100, 100, 100, 0);
+        this.spear = spear;
+        this.name = name;
     }
-    @Override
-    public void running(){
-
-    }
+    public void setSpear(int spear) {this.spear = spear;}
+    public int getSpear() {return spear;}
 }
