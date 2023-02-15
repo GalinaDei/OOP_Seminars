@@ -20,4 +20,8 @@ public class Crossbow_man extends Base_Unit{
     public int getArrows(){return arrows;}
     public void setCrossbow(int crossbow) {this.crossbow = crossbow;}
     public int getCrossbow() {return crossbow;}
+    @Override
+    public void step() { System.out.println("Crossbowman is walking..."); }
+    @Override
+    public String getInfo() {return "I`m a crossbowman ";}
 }

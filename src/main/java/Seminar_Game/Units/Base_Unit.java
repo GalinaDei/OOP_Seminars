@@ -1,6 +1,8 @@
 package Seminar_Game.Units;
 
-public abstract class Base_Unit {
+import java.util.Random;
+
+public abstract class Base_Unit implements GameInterface{
     public String name;
     protected int health, damage, strength, speed, accuracy, food, drink, def, attack;
 
@@ -43,12 +45,16 @@ public abstract class Base_Unit {
     public   void dreaming(){
 
     }
-    public void walking(){
-
-    }
     public void running(){
 
     }
     public void setAttack(int strength, int accuracy, int speed) { this.attack = strength+accuracy+speed; }
     public int getAttack() {return attack;}
+
+    @Override
+    public void step() {
+        System.out.println("Character is walking...");
+    }
+    @Override
+    public String getInfo() { return "I`m a man!"; }
 }

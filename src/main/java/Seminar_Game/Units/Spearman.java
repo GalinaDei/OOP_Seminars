@@ -15,4 +15,8 @@ public class Spearman extends Base_Unit{
     }
     public void setSpear(int spear) {this.spear = spear;}
     public int getSpear() {return spear;}
+    @Override
+    public void step() {super.step();}
+    @Override
+    public String getInfo() {return "I`m a spearman ";}
 }

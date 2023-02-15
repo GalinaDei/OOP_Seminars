@@ -21,4 +21,8 @@ public class Monk extends Base_Unit{
         this.prayer = 100;
         return prayer;
     }
+    @Override
+    public void step() {System.out.println("Monk is walking...");}
+    @Override
+    public String getInfo() {return "I`m a monk ";}
 }

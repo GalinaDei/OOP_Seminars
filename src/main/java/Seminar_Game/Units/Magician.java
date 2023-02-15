@@ -31,5 +31,10 @@ public class Magician extends Base_Unit{
     }
     public void setMana(int mana){this.mana = mana; }
     public int getMana(){return mana;}
+
+    @Override
+    public void step() {super.step();}
+    @Override
+    public String getInfo() {return "I`m a magician ";}
 }
 

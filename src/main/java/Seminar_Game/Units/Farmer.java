@@ -37,4 +37,8 @@ public class Farmer extends Base_Unit{
         this.arrows = 100;
         return arrows;
     }
+    @Override
+    public void step() { System.out.println("Farmer is walking...");}
+    @Override
+    public String getInfo() {return "I`m a farmer "; }
 }

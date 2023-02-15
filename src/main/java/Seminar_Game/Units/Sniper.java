@@ -20,4 +20,8 @@ public class Sniper extends Base_Unit{
     public int getCartridges(){ return cartridges; }
     public void setGan(int gan) {this.gan = gan;}
     public int getGan() {return gan;}
+    @Override
+    public void step() {System.out.println("Sniper is walking...");}
+    @Override
+    public String getInfo() {return "I`m a sniper ";}
 }

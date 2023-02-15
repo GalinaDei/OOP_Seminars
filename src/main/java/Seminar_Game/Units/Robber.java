@@ -10,4 +10,8 @@ public class Robber extends Base_Unit{
     }
     public void  robbery(){;
     }
+    @Override
+    public void step() {System.out.println("Robber is walking...");}
+    @Override
+    public String getInfo() {return "I`m a robber ";}
 }
