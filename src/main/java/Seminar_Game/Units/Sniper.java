@@ -1,35 +1,40 @@
 package Seminar_Game.Units;
+
+import java.util.ArrayList;
+
 public class Sniper extends Base_Unit{
-    public Sniper(String name, int health, int damageMin, int damageMax, int strength, int speed, int accuracy, int food, int drink, int def,
-                  int attack, int cartridges, int gan) {
-        super(name, health, damageMin, damageMax, strength, speed, accuracy, food, drink, def, attack);
-        this.cartridges = cartridges;
-        this.gan = gan;
-    }
-    public Sniper(String name) {
-        super(name, 15, 8, 10, 50, 9, 100, 100, 90, 10,12);
-        this.cartridges = 32;
-        this.gan = 1;
-    }
     private int cartridges;
-    private int gan;
+
+    public Sniper(int x, int y, String type, String name, int health, int damageMin, int damageMax, int speed, int def, int attack, int cartridges) {
+        super(x, y, type, name, health, damageMin, damageMax, speed, def, attack);
+        this.cartridges = cartridges;
+    }
+    public Sniper(int x, int y, String name) {
+        super(x, y, "Sniper", name, 15, 8, 10, 9, 10,12);
+        this.cartridges = 32;
+    }
     public void setCartridges(int cartridges){this.cartridges = cartridges;}
     public int getCartridges(){ return cartridges; }
-    public void setGan(int gan) {this.gan = gan;}
-    public int getGan() {return gan;}
     @Override
-    public void step() {System.out.println("Sniper is walking...");}
+    public void step(ArrayList enemyTeam, ArrayList ownTeam) {
+        if (this.health == 0 || this.cartridges == 0) { return;
+        } else {
+            coords.getClosest(enemyTeam).setHealth(coords.getClosest(enemyTeam).getHealth() - this.attack);
+            for (int i = 0; i < ownTeam.size(); i++) {
+                if (ownTeam.get(i) instanceof Farmer && ((Farmer) ownTeam.get(i)).health >0){
+                    return;
+                } else {this.cartridges--;}
+            }
+        }
+    }
     @Override
     public String getInfo() {return "I`m a sniper ";}
     public String toString() {
-        return "Sniper: " +
-                "     name = '" + name + '\'' +
+        return type +
+                "      name = " + name + ", " +
+                coords +
                 ", health = " + health +
-//                ", strength = " + strength +
                 ", speed = " + speed +
-//                ", accuracy = " + accuracy +
-//                ", food = " + food +
-//                ", drink = " + drink +
                 ", def = " + def +
                 ", attack = " + attack +
                 ", damageMin = " + damageMin +

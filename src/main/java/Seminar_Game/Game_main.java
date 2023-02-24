@@ -2,62 +2,56 @@ package Seminar_Game;
 import Seminar_Game.Units.*;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.Random;
+import java.util.Scanner;
+
 public class Game_main {
     public static void main(String[] args) {
         int teamCount = 10;
         Random rand = new Random();
+        Scanner user_input = new Scanner(System.in);
         ArrayList<Base_Unit> gameTeamOne = new ArrayList<>();
         for (int i = 0; i < teamCount; i++) {
             switch (rand.nextInt(4)) {
-                case 0 -> gameTeamOne.add(new Farmer(getNameS()));
-                case 1 -> gameTeamOne.add(new Crossbow_man(getNameS()));
-                case 2 -> gameTeamOne.add(new Monk(getNameS()));
-                case 3 -> gameTeamOne.add(new Spearman(getNameS()));
+                case 0 -> gameTeamOne.add(new Farmer(10,i+1, getNameOne()));
+                case 1 -> gameTeamOne.add(new Crossbow_man(10,i+1, getNameOne()));
+                case 2 -> gameTeamOne.add(new Monk(10, 1, getNameOne()));
+                case 3 -> gameTeamOne.add(new Spearman(10, i+1, getNameOne()));
             }
         }
-        System.out.println("Team One:");
-        for (int i = 0; i < gameTeamOne.size(); i++) {
-            System.out.println(gameTeamOne.get(i));
-        };
         ArrayList<Base_Unit> gameTeamTwo = new ArrayList<>();
         for (int i = 0; i < teamCount; i++) {
             switch (rand.nextInt(4)) {
-                case 0 -> gameTeamTwo.add(new Farmer(getNameS()));
-                case 1 -> gameTeamTwo.add(new Magician(getNameS()));
-                case 2 -> gameTeamTwo.add(new Robber(getNameS()));
-                case 3 -> gameTeamTwo.add(new Sniper(getNameS()));
+                case 0 -> gameTeamTwo.add(new Farmer(1,i+1, getNameTwo()));
+                case 1 -> gameTeamTwo.add(new Magician(1, i+1, getNameTwo()));
+                case 2 -> gameTeamTwo.add(new Robber(5, i+1, getNameTwo()));
+                case 3 -> gameTeamTwo.add(new Sniper(1, i+1, getNameTwo()));
             }
         }
-        System.out.println("Team Two:");
-        for (int i = 0; i < gameTeamTwo.size(); i++) {
-            System.out.println(gameTeamTwo.get(i));
-        }
+/* Чтобы пробежать по общему списку и определить, к какой  команде относится объект, можно использовать contains()
+*   for (Base_Unit unit: arrayAll) {
+*       if (gameTeamOne.contains(unit))
+*           {System.out.println("OneTeam")
+*       } else {
+*           System.out.println("TwoTeam")
+*       }
+*  В этои же цикле можно запустить step()
+* */
+        ArrayList <Base_Unit> arrayAll = new ArrayList<>(gameTeamOne);
+        arrayAll.addAll(gameTeamTwo);
+        arrayAll.sort((Comparator<Base_Unit>) (o1, o2) -> {
+            if (o2.getSpeed() == o1.getSpeed()) { return o2.getAttack() - o1.getAttack();}
+            return o2.getSpeed() - o1.getSpeed();});
 
-        ArrayList arrayAll = new ArrayList<>(gameTeamOne);
-        for (int i = 0; i < gameTeamTwo.size(); i++) {
-            arrayAll.add(gameTeamTwo.get(i));
-        }
-        System.out.println("До сортировки");
-        for (int i = 0; i < arrayAll.size(); i++) {
-            System.out.println(arrayAll.get(i));
-        }
-        arrayAll.sort(new Comparator<Base_Unit>() {
-            @Override
-            public int compare(Base_Unit o1, Base_Unit o2) {
-                if (o2.getSpeed() == o1.getSpeed()) { return o1.getAttack() - o2.getAttack();}
-                return o2.getSpeed() - o1.getSpeed();}
-                });
-        System.out.println("После сортировки");
-        for (int i = 0; i < arrayAll.size(); i++) {
-            System.out.println(arrayAll.get(i));
-        }
+
+
     }
 
-    private static String getNameS(){
-        String name = String.valueOf(Names.values()[new Random().nextInt(Names.values().length-1)]);
-            return name;
+    private static String getNameOne(){
+        return String.valueOf(NamesOne.values()[new Random().nextInt(NamesOne.values().length-1)]);
+    }
+    private static String getNameTwo(){
+        return String.valueOf(NamesTwo.values()[new Random().nextInt(NamesTwo.values().length-1)]);
     }
 
 }

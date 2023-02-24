@@ -1,21 +1,22 @@
 package Seminar_Game.Units;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Base_Unit implements GameInterface {
-    public String name;
-    protected int health, damageMin, damageMax, strength, speed, accuracy, food, drink, def, attack;
+    public String name, type;
+    protected int health, damageMin, damageMax, speed, def, attack;
+    protected Coords coords;
 
-    public Base_Unit(String name, int health, int damageMin, int damageMax, int strength, int speed, int accuracy, int food, int drink, int def, int attack) {
+    public Base_Unit(int x, int y, String type,String name, int health, int damageMin, int damageMax, int speed,
+                     int def, int attack) {
+        coords = new Coords(x,y);
+        this.type = type;
         this.name = name;
         this.health = health;
         this.damageMin = damageMin;
         this.damageMax = damageMax;
-        this.strength = strength;
         this.speed = speed;
-        this.accuracy = accuracy;
-        this.food = food;
-        this.drink = drink;
         this.def = def;
         this.attack = attack;
     }
@@ -25,6 +26,15 @@ public abstract class Base_Unit implements GameInterface {
     public String getName() {
         return name;
     }
+
+    public Coords getCoords() {return coords;}
+    public int getX() {return coords.x;}
+    public int getY() {return coords.y;}
+
+    public void setCoords(Coords coords) {
+        this.coords = coords;
+    }
+    public String getType() {return type;}
     public void setHealth(int health) {
         this.health = health;
     }
@@ -37,24 +47,8 @@ public abstract class Base_Unit implements GameInterface {
     public int getDamageMax() {
         return damageMax;
     }
-    public int getStrength() {
-        return strength;
-    }
     public int getSpeed() {
         return speed;
-    }
-    public int getAccuracy() {
-        return accuracy;
-    }
-    public void setFood(int food) {
-        this.food += food;
-    }
-    public int getFood() {
-        return food;
-    }
-    public void setDrink(int food) {this.drink += drink;}
-    public int getDrink() {
-        return drink;
     }
     public void setDef(int def) {
         this.def = def;
@@ -62,13 +56,17 @@ public abstract class Base_Unit implements GameInterface {
     public int getDef() {
         return def;
     }
-    public void setAttack(int attack) {
+    public void doAttack(int attack) {
         this.attack = attack;
     }
     public int getAttack() { return attack;}
+
     @Override
-    public void step() {
-        System.out.println("Character is walking...");
+    public void step(ArrayList enemyTeam, ArrayList ownTeam) {
+        if (this.health == 0) { return;
+        } else {
+            coords.getClosest(enemyTeam);
+        }
     }
     @Override
     public String getInfo() { return "I`m a man!";}
@@ -76,13 +74,10 @@ public abstract class Base_Unit implements GameInterface {
     @Override
     public String toString() {
         return "Base_Unit: " +
-                "name ='" + name + '\'' +
+                " name = " + name + ", " +
+                coords +
                 ", health =" + health +
-//                ", strength =" + strength +
                 ", speed =" + speed +
-//                ", accuracy =" + accuracy +
-//                ", food =" + food +
-//                ", drink =" + drink +
                 ", def =" + def +
                 ", attack =" + attack +
                 ", damageMin =" + damageMin +

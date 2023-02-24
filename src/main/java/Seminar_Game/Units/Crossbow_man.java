@@ -1,32 +1,44 @@
 package Seminar_Game.Units;
 import java.util.ArrayList;
 public class Crossbow_man extends Base_Unit{
-    private int arrows, crossbow;
-    public Crossbow_man(String name, int health, int damageMin, int damageMax, int strength, int speed, int accuracy, int food, int drink, int def,
-                        int attack, int arrows, int crossbow, int delivery) {
-        super(name, health, damageMin, damageMax, strength, speed, accuracy, food, drink, def, attack);
+    private int arrows;
+
+    private Crossbow_man(int x, int y, String type,String name, int health, int damageMin, int damageMax, int speed, int def, int attack, int arrows) {
+        super(x, y, type, name, health, damageMin, damageMax, speed,def, attack);
         this.arrows = arrows;
-        this.crossbow = crossbow;
     }
-    public Crossbow_man(String name){
-        super(name, 10, 2,3, 70, 4, 80, 100, 100, 3, 6);
+
+    public Crossbow_man(int x, int y, String name){
+        super(x,y, "Crossbowman", name, 10, 2,3, 4, 3, 6);
         this.name = name;
         this.arrows = 16;
-        this.crossbow = 1;
     }
     public void setArrows(int arrows){ this.arrows = arrows; }
     public int getArrows(){return arrows;}
-    public void setCrossbow(int crossbow) {this.crossbow = crossbow;}
-    public int getCrossbow() {return crossbow;}
+
     @Override
-    public void step() { System.out.println("Crossbowman is walking..."); }
+    public void step(ArrayList enemyTeam, ArrayList ownTeam) {
+        if (this.health == 0 || this.arrows == 0) { return;
+        } else {
+            coords.getClosest(enemyTeam).setHealth(coords.getClosest(enemyTeam).getHealth() - this.attack);
+            /* damage = (enemy.def - this.attack) < 0 ? this.maxDamage : (enemy.def - this.attack) > 0 ? this.minDamage : (this.maxDamage + this.minDamage) / 2; */
+            for (int i = 0; i < ownTeam.size(); i++) {
+                if (ownTeam.get(i) instanceof Farmer && ((Farmer) ownTeam.get(i)).health >0){
+                    return;
+                } else {this.arrows--;}
+            }
+        }
+    }
+
+
     @Override
     public String getInfo() {return "I`m a crossbowman ";}
 
     @Override
     public String toString() {
-        return "Crossbowman: " +
-                "name = '" + name + '\'' +
+        return type +
+                " name = " + name + ", " +
+                 coords +
                 ", health = " + health +
 //                ", strength = " + strength +
                 ", speed = " + speed +
