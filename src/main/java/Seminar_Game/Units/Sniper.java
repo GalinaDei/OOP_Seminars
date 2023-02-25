@@ -17,18 +17,30 @@ public class Sniper extends Base_Unit{
     public int getCartridges(){ return cartridges; }
     @Override
     public void step(ArrayList enemyTeam, ArrayList ownTeam) {
-        if (this.health == 0 || this.cartridges == 0) { return;
-        } else {
-            coords.getClosest(enemyTeam).setHealth(coords.getClosest(enemyTeam).getHealth() - this.attack);
+        if (this.health <= 0) {
+            System.out.println(this.type+" "+this.name+" i`m die");
+        }
+        if (this.cartridges <= 0) {
+            System.out.println(this.type+" "+this.name+" i`v not got cartridges!");
+        }
+        if (this.health > 0 && this.cartridges > 0) {
+            Base_Unit target = coords.getClosest(enemyTeam);
+            System.out.println(this.type+" "+ name+" my target is "+target.type +" "+ target.name+" "+target.health);
+            int damage = (target.def - this.attack) < 0 ? this.damageMax : (target.def - this.attack) > 0 ? this.damageMin : (this.damageMax + this.damageMin) / 2;
+            target.setHealth(coords.getClosest(enemyTeam).getHealth() - damage);
             for (int i = 0; i < ownTeam.size(); i++) {
-                if (ownTeam.get(i) instanceof Farmer && ((Farmer) ownTeam.get(i)).health >0){
+                if (ownTeam.get(i) instanceof Farmer && ((Farmer) ownTeam.get(i)).health > 0 && ((Farmer) ownTeam.get(i)).getDelivery() == 1){
+                    ((Farmer) ownTeam.get(i)).setDelivery(-1);
+                    return;   // instanceof - тяжелый инструмент; ля поиска персонажа лучше воспользоваться getInfo()
+                } else {
+                    this.cartridges--;
                     return;
-                } else {this.cartridges--;}
+                }
             }
         }
     }
     @Override
-    public String getInfo() {return "I`m a sniper ";}
+    public String getInfo() {return type+"      " +name+"- health: "+health+", cartridges: "+cartridges;}
     public String toString() {
         return type +
                 "      name = " + name + ", " +

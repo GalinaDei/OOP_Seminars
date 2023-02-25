@@ -10,7 +10,7 @@ public class Robber extends Base_Unit{
     public void  robbery(){;
     }
     @Override
-    public String getInfo() {return "I`m a robber ";}
+    public String getInfo() {return type+"      " +name+"- health: "+health;}
     public String toString() {
         return type +
                 "      name = " + name + ", " +

@@ -1,5 +1,5 @@
 package Seminar_Game.Units;
 
 public enum NamesTwo {
-    Motorola, Jupiter, Corbin, Random, Dvorkin, Merlin,
+    Sucrose, Motorola, Yunjinn, Jupiter, Faruzan, Corbin, Lumine, Random, Aether, Dvorkin, Merlin, Diluck, Ayatho
 }

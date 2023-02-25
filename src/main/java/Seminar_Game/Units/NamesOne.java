@@ -1,6 +1,6 @@
 package Seminar_Game.Units;
 
 public enum NamesOne {
-    Java, Mars, Dara,  Kain, Brand,  Juli
+    Sayu, Java, Mars, Jean,  Dara, Doty, Kain, Brand,  Juli, Goro, Klee, Mika, Cyno, Mona
 }
 

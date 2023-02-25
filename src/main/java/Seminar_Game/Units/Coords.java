@@ -30,21 +30,20 @@ public class Coords {
         double distance = Math.sqrt(Math.pow((x - this.x), 2) + Math.pow((y - this.y), 2));
         return distance;
     }
-    public Base_Unit getClosest(ArrayList<Base_Unit> array){
-        double minDistance = 10;
-        Base_Unit closestUnit = array.get(0);
-        for (int i=0; i < array.size(); i++) {
-            if (array.get(i).getHealth() > 0) {
+    public Base_Unit getClosest(ArrayList<Base_Unit> array) {
+        double minDistance = 20;
+        int closestUnitIndex = 0;
+        for (int i = 0; i < array.size(); i++) {
+            if (array.get(i).health > 0) {
                 double distance = getDistance(array.get(i).getX(), array.get(i).getY());
                 if (distance < minDistance) {
                     minDistance = distance;
-                    closestUnit = array.get(i);
+                    closestUnitIndex = i;
                 }
             }
         }
-        return closestUnit;
+        return array.get(closestUnitIndex);
     }
-
     @Override
     public String toString() {
         return " coords: "+"X="+ x+ ", Y=" + y ;

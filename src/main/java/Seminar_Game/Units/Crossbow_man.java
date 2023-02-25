@@ -9,7 +9,7 @@ public class Crossbow_man extends Base_Unit{
     }
 
     public Crossbow_man(int x, int y, String name){
-        super(x,y, "Crossbowman", name, 10, 2,3, 4, 3, 6);
+        super(x,y, "Crossbowman", name, 10, 2,3, 9, 3, 6);
         this.name = name;
         this.arrows = 16;
     }
@@ -18,21 +18,31 @@ public class Crossbow_man extends Base_Unit{
 
     @Override
     public void step(ArrayList enemyTeam, ArrayList ownTeam) {
-        if (this.health == 0 || this.arrows == 0) { return;
-        } else {
-            coords.getClosest(enemyTeam).setHealth(coords.getClosest(enemyTeam).getHealth() - this.attack);
-            /* damage = (enemy.def - this.attack) < 0 ? this.maxDamage : (enemy.def - this.attack) > 0 ? this.minDamage : (this.maxDamage + this.minDamage) / 2; */
+        if (this.health <= 0) {
+            System.out.println(this.type+" "+this.name+" i`m die");
+        }
+        if (this.arrows <= 0) {
+            System.out.println(this.type+" "+this.name+" i`v not got arrows!");
+        }
+        if (this.health > 0 && this.arrows > 0){
+            Base_Unit target = coords.getClosest(enemyTeam);
+            System.out.println(this.type+" "+ name+" my target is "+target.type +" "+ target.name+" "+target.health);
+            int damage = (target.def - this.attack) < 0 ? this.damageMax : (target.def - this.attack) > 0 ? this.damageMin : (this.damageMax + this.damageMin) / 2;
+            target.setHealth(coords.getClosest(enemyTeam).getHealth() - damage);
             for (int i = 0; i < ownTeam.size(); i++) {
-                if (ownTeam.get(i) instanceof Farmer && ((Farmer) ownTeam.get(i)).health >0){
+                if (ownTeam.get(i) instanceof Farmer && ((Farmer) ownTeam.get(i)).health > 0 && ((Farmer) ownTeam.get(i)).getDelivery() == 1){
+                    ((Farmer) ownTeam.get(i)).setDelivery(-1);
                     return;
-                } else {this.arrows--;}
+                } else {
+                    this.arrows--;
+                    return;}
             }
         }
     }
 
 
     @Override
-    public String getInfo() {return "I`m a crossbowman ";}
+    public String getInfo() {return type+" " +name+"- health: "+health+", arrows: "+arrows;}
 
     @Override
     public String toString() {

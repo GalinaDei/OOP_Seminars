@@ -9,7 +9,7 @@ public class Spearman extends Base_Unit {
     }
 
     @Override
-    public String getInfo() {return "I`m a spearman ";}
+    public String getInfo() {return type+"    " +name+"- health: "+health;}
     public String toString() {
         return type +
                 "    name = " + name + ", " +
