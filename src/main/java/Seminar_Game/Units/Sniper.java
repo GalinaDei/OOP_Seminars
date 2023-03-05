@@ -10,7 +10,7 @@ public class Sniper extends Base_Unit{
         this.cartridges = cartridges;
     }
     public Sniper(int x, int y, String name) {
-        super(x, y, "Sniper", name, 15, 8, 10, 9, 10,12);
+        super(x, y, "\uD83D\uDD2B", name, 15, 8, 10, 9, 10,12);
         this.cartridges = 32;
     }
     public void setCartridges(int cartridges){this.cartridges = cartridges;}
@@ -40,7 +40,7 @@ public class Sniper extends Base_Unit{
         }
     }
     @Override
-    public String getInfo() {return type+"      " +name+"- health: "+health+", cartridges: "+cartridges;}
+    public String getInfo() {return type+" " +name+"- health: "+health+", cartridges: "+cartridges;}
     public String toString() {
         return type +
                 "      name = " + name + ", " +

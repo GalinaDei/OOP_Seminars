@@ -1,14 +1,14 @@
 package Seminar_Game.Units;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public abstract class Base_Unit implements GameInterface {
-    public String name, type;
+    public String name;
+    public String type;
     protected int health, damageMin, damageMax, speed, def, attack;
     protected Coords coords;
 
-    public Base_Unit(int x, int y, String type,String name, int health, int damageMin, int damageMax, int speed,
+    protected Base_Unit(int x, int y, String type,String name, int health, int damageMin, int damageMax, int speed,
                      int def, int attack) {
         coords = new Coords(x,y);
         this.type = type;
@@ -20,10 +20,10 @@ public abstract class Base_Unit implements GameInterface {
         this.def = def;
         this.attack = attack;
     }
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
-    public String getName() {
+    protected String getName() {
         return name;
     }
 
@@ -34,32 +34,33 @@ public abstract class Base_Unit implements GameInterface {
     public void setCoords(Coords coords) {
         this.coords = coords;
     }
-    public String getType() {return type;}
-    public void setHealth(int health) {
+    protected String getType() {return type;}
+    protected void setHealth(int health) {
         this.health = health;
     }
     public int getHealth() {
         return health;
     }
-    public int getDamageMin() {
+    protected int getDamageMin() {
         return damageMin;
     }
-    public int getDamageMax() {
+    protected int getDamageMax() {
         return damageMax;
     }
     public int getSpeed() {
         return speed;
     }
-    public void setDef(int def) {
+    protected void setDef(int def) {
         this.def = def;
     }
-    public int getDef() {
+    protected int getDef() {
         return def;
     }
-    public void doAttack(int attack) {
+    protected void doAttack(int attack) {
         this.attack = attack;
     }
     public int getAttack() { return attack;}
+
 
     @Override
     public void step(ArrayList enemyTeam, ArrayList ownTeam) {
@@ -67,6 +68,11 @@ public abstract class Base_Unit implements GameInterface {
         } else {
             coords.getClosest(enemyTeam);
         }
+    }
+    protected void doMove (ArrayList enemyTeam, ArrayList ownTeam){
+
+
+        this.coords.x ++;
     }
     @Override
     public String getInfo() { return "I`m a man!";}

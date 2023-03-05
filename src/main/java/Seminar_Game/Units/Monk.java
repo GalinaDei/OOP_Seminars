@@ -12,7 +12,7 @@ public class Monk extends Base_Unit{
     }
 
     public Monk(int x, int y, String name) {
-        super(x,y, "Monk", name, 30,0,0,5, 7,12);
+        super(x,y, "\uD83D\uDE4F", name, 30,0,0,5, 7,12);
         this.damage = 2;
         this.spell = 5;
     }
@@ -52,7 +52,8 @@ public class Monk extends Base_Unit{
         }
     }
     @Override
-    public String getInfo() {return type+"        " +name+"- health: "+health;}
+    public String getInfo() {
+        return type+" " +name+"- health: "+health+"             ";}
     public String toString() {
         return type +
                 "        name = " + name + ", " +

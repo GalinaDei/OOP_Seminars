@@ -10,7 +10,7 @@ public class Magician extends Base_Unit{
         this.damage = damage;
     }
     public Magician(int x, int y, String  name) {
-        super(x,y, "Magician", name, 30, 0, 0, 5,  12, 17);
+        super(x,y, "\uD83E\uDDD9", name, 30, 0, 0, 5,  12, 17);
         this.name = name;
         this.mana = 3;
         this.damage = 2;
@@ -53,7 +53,7 @@ public class Magician extends Base_Unit{
         }
     }
     @Override
-    public String getInfo() {return type+"    " +name+"- health: "+health+", mana: "+mana;}
+    public String getInfo() {return type+" " +name+"- health: "+health+", mana: "+mana+"        ";}
     public String toString() {
         return type +
                 "    name = " + name + ", " +

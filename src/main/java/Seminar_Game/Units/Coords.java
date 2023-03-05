@@ -14,17 +14,17 @@ public class Coords {
 //        return x;
 //    }
 //
-//    public void setX(int x) {
-//        this.x = x;
-//    }
+    public void setX(int x) {
+        this.x = x;
+    }
 //
 //    public int getY() {
 //        return y;
 //    }
 //
-//    public void setY(int y) {
-//        this.y = y;
-//    }
+    public void setY(int y) {
+        this.y = y;
+    }
 
     public double getDistance(int x, int y){
         double distance = Math.sqrt(Math.pow((x - this.x), 2) + Math.pow((y - this.y), 2));

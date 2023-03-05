@@ -1,5 +1,7 @@
 package Seminar_Game.Units;
 
+import Seminar_Game.AnsiColors;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -12,7 +14,7 @@ public class Farmer extends Base_Unit {
         this.damage = damage;
     }
     public Farmer(int x, int y, String name) {
-        super(x, y, "Farmer", name, 1, 0, 0, 3, 1, 1);
+        super(x, y, "\uD83E\uDD26", name, 1, 0, 0, 3, 1, 1);
         this.delivery = 1;
         this.damage = 1;
     }
@@ -22,7 +24,7 @@ public class Farmer extends Base_Unit {
 
     @Override
     public String getInfo() {
-        return type+"      " +name+"- health: "+health+",  delivery: "+delivery;
+        return type+" " +name+"- health: "+health+",  delivery: "+delivery;
     }
 
     @Override

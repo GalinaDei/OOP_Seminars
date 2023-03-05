@@ -9,7 +9,7 @@ public class Crossbow_man extends Base_Unit{
     }
 
     public Crossbow_man(int x, int y, String name){
-        super(x,y, "Crossbowman", name, 10, 2,3, 9, 3, 6);
+        super(x,y, "\uD83C\uDFF9", name, 10, 2,3, 9, 3, 6);
         this.name = name;
         this.arrows = 16;
     }
@@ -39,10 +39,9 @@ public class Crossbow_man extends Base_Unit{
             }
         }
     }
-
-
     @Override
-    public String getInfo() {return type+" " +name+"- health: "+health+", arrows: "+arrows;}
+    public String getInfo() {
+        return type+" " +name+"- health: "+health+", arrows: "+arrows+" ";}
 
     @Override
     public String toString() {
