@@ -24,7 +24,7 @@ public class Farmer extends Base_Unit {
 
     @Override
     public String getInfo() {
-        return type+" " +name+"- health: "+health+",  delivery: "+delivery;
+        return type+" " +name+"- health: "+health+",  delivery: "+delivery+", "+"X: "+this.getX()+", Y: "+this.getY();
     }
 
     @Override
@@ -32,14 +32,13 @@ public class Farmer extends Base_Unit {
         if (this.health <= 0) {
             System.out.println(this.type+" "+this.name+" i`m die");
         } else {
-            System.out.println(this.type +" "+ name+" delivery: "+ this.delivery);
             if (this.delivery <= 0) {
                 setDelivery(1);
             };
-            System.out.println(this.type + " delivery: "+this.delivery);
+
             Base_Unit target = coords.getClosest(enemyTeam);
-            if (coords.getDistance(target.getX(), target.getY()) == 1) {
-                System.out.println(this.type+" my target is "+target.type+" "+target.name);
+            if (coords.getDistance(target.getX(), target.getY()) <= 1) {
+                System.out.println(this.type+" "+ name+" I`m striking "+target.type +" "+ target.name+". His health "+target.health+" now");
                 target.setHealth(coords.getClosest(enemyTeam).getHealth() - this.attack);
             }
         }

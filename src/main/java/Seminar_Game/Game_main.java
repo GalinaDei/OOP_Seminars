@@ -27,10 +27,28 @@ public class Game_main {
             View.view(arrayAll, gameTeamOne, gameTeamTwo);
             user_input.nextLine();
             for (Base_Unit unit: arrayAll) {
-                if (gameTeamOne.contains(unit))
-                    {unit.step(gameTeamTwo,gameTeamOne);
-                } else { unit.step(gameTeamOne, gameTeamTwo);}
+                if ( unit.getHealth()>0)
+                    if (gameTeamOne.contains(unit))
+                     { unit.moveToEnemy(gameTeamTwo, gameTeamOne);
+                         unit.step(gameTeamTwo,gameTeamOne);
+
+                    } else {
+                        unit.moveToEnemy(gameTeamOne, gameTeamTwo);
+                        unit.step(gameTeamOne, gameTeamTwo);
+
+                    }
             }
+            int totalHealthOne = 0;
+            int totalHealthTwo = 0;
+            for (int i = 0; i < gameTeamOne.size(); i++) {
+                totalHealthOne += gameTeamOne.get(i).getHealth();
+                totalHealthTwo += gameTeamTwo.get(i).getHealth();
+            }
+            if (totalHealthOne <= 0 || totalHealthTwo <= 0){
+                View.view(arrayAll, gameTeamOne, gameTeamTwo);
+                break;
+            }
+
         }
     }
     private static String getNameOne(){
@@ -48,8 +66,8 @@ public class Game_main {
                 switch (rand.nextInt(4)) {
                     case 0 -> team.add(new Farmer(1, i+1, getNameOne()));
                     case 1 -> team.add(new Crossbow_man(1, i+1, getNameOne()));
-                    case 2 -> team.add(new Monk(1, i+1, getNameOne()));
-                    case 3 -> team.add(new Spearman(1, i + 1, getNameOne()));
+                    case 2 -> team.add(new Monk(2, i+1, getNameOne()));
+                    case 3 -> team.add(new Spearman(3, i + 1, getNameOne()));
                 }
             }
         }
@@ -57,8 +75,8 @@ public class Game_main {
             for (int i = 0; i < teamCount; i++) {
                 switch (rand.nextInt(4)) {
                     case 0 -> team.add(new Farmer(10,i+1, getNameTwo()));
-                    case 1 -> team.add(new Magician(10, i+1, getNameTwo()));
-                    case 2 -> team.add(new Robber(10, i+1, getNameTwo()));
+                    case 1 -> team.add(new Magician(9, i+1, getNameTwo()));
+                    case 2 -> team.add(new Robber(8, i+1, getNameTwo()));
                     case 3 -> team.add(new Sniper(10, i+1, getNameTwo()));
                 }
             }

@@ -3,12 +3,12 @@ import java.util.ArrayList;
 public class Crossbow_man extends Base_Unit{
     private int arrows;
 
-    private Crossbow_man(int x, int y, String type,String name, int health, int damageMin, int damageMax, int speed, int def, int attack, int arrows) {
+    private Crossbow_man(double x, double y, String type,String name, int health, int damageMin, int damageMax, int speed, int def, int attack, int arrows) {
         super(x, y, type, name, health, damageMin, damageMax, speed,def, attack);
         this.arrows = arrows;
     }
 
-    public Crossbow_man(int x, int y, String name){
+    public Crossbow_man(double x, double y, String name){
         super(x,y, "\uD83C\uDFF9", name, 10, 2,3, 9, 3, 6);
         this.name = name;
         this.arrows = 16;
@@ -26,12 +26,13 @@ public class Crossbow_man extends Base_Unit{
         }
         if (this.health > 0 && this.arrows > 0){
             Base_Unit target = coords.getClosest(enemyTeam);
-            System.out.println(this.type+" "+ name+" my target is "+target.type +" "+ target.name+" "+target.health);
+            System.out.println(this.type+" "+ name+" I`m striking "+target.type +" "+ target.name+". His health "+target.health+" now");
             int damage = (target.def - this.attack) < 0 ? this.damageMax : (target.def - this.attack) > 0 ? this.damageMin : (this.damageMax + this.damageMin) / 2;
             target.setHealth(coords.getClosest(enemyTeam).getHealth() - damage);
             for (int i = 0; i < ownTeam.size(); i++) {
                 if (ownTeam.get(i) instanceof Farmer && ((Farmer) ownTeam.get(i)).health > 0 && ((Farmer) ownTeam.get(i)).getDelivery() == 1){
                     ((Farmer) ownTeam.get(i)).setDelivery(-1);
+                    System.out.println(((Farmer) ownTeam.get(i)).type+ " "+ ((Farmer) ownTeam.get(i)).name+" is delivering ammunition to "+ this.type + " "+ name);
                     return;
                 } else {
                     this.arrows--;
@@ -41,7 +42,7 @@ public class Crossbow_man extends Base_Unit{
     }
     @Override
     public String getInfo() {
-        return type+" " +name+"- health: "+health+", arrows: "+arrows+" ";}
+        return type+" " +name+"- health: "+health+", arrows: "+arrows+",  "+"X: "+this.getX()+", Y: "+this.getY();}
 
     @Override
     public String toString() {

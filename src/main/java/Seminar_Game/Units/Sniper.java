@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Sniper extends Base_Unit{
     private int cartridges;
 
-    public Sniper(int x, int y, String type, String name, int health, int damageMin, int damageMax, int speed, int def, int attack, int cartridges) {
+    public Sniper(double x, double y, String type, String name, int health, int damageMin, int damageMax, int speed, int def, int attack, int cartridges) {
         super(x, y, type, name, health, damageMin, damageMax, speed, def, attack);
         this.cartridges = cartridges;
     }
-    public Sniper(int x, int y, String name) {
+    public Sniper(double x, double y, String name) {
         super(x, y, "\uD83D\uDD2B", name, 15, 8, 10, 9, 10,12);
         this.cartridges = 32;
     }
@@ -25,12 +25,13 @@ public class Sniper extends Base_Unit{
         }
         if (this.health > 0 && this.cartridges > 0) {
             Base_Unit target = coords.getClosest(enemyTeam);
-            System.out.println(this.type+" "+ name+" my target is "+target.type +" "+ target.name+" "+target.health);
+            System.out.println(this.type+" "+ name+" I`m striking "+target.type +" "+ target.name+". His health "+target.health+" now");
             int damage = (target.def - this.attack) < 0 ? this.damageMax : (target.def - this.attack) > 0 ? this.damageMin : (this.damageMax + this.damageMin) / 2;
             target.setHealth(coords.getClosest(enemyTeam).getHealth() - damage);
             for (int i = 0; i < ownTeam.size(); i++) {
                 if (ownTeam.get(i) instanceof Farmer && ((Farmer) ownTeam.get(i)).health > 0 && ((Farmer) ownTeam.get(i)).getDelivery() == 1){
                     ((Farmer) ownTeam.get(i)).setDelivery(-1);
+                    System.out.println(((Farmer) ownTeam.get(i)).type+ " "+ ((Farmer) ownTeam.get(i)).name+" is delivering ammunition to "+ this.type + " "+ name);
                     return;   // instanceof - тяжелый инструмент; ля поиска персонажа лучше воспользоваться getInfo()
                 } else {
                     this.cartridges--;
@@ -40,7 +41,7 @@ public class Sniper extends Base_Unit{
         }
     }
     @Override
-    public String getInfo() {return type+" " +name+"- health: "+health+", cartridges: "+cartridges;}
+    public String getInfo() {return type+" " +name+"- health: "+health+", cartridges: "+cartridges+", "+"X: "+this.getX()+", Y: "+this.getY();}
     public String toString() {
         return type +
                 "      name = " + name + ", " +

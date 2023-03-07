@@ -4,29 +4,20 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Coords {
-    protected int x, y;
-    public Coords(int x, int y) {
+    protected double x, y;
+    public Coords(double x, double y) {
         this.x = x;
         this.y = y;
     }
-
-//    public int getX() {
-//        return x;
-//    }
-//
-    public void setX(int x) {
+    public double getX() {return x;}
+    public void setX(double x) {
         this.x = x;
     }
-//
-//    public int getY() {
-//        return y;
-//    }
-//
-    public void setY(int y) {
+    public double getY() {return y;}
+    public void setY(double y) {
         this.y = y;
     }
-
-    public double getDistance(int x, int y){
+    public double getDistance(double x, double y){
         double distance = Math.sqrt(Math.pow((x - this.x), 2) + Math.pow((y - this.y), 2));
         return distance;
     }

@@ -5,13 +5,13 @@ import java.util.ArrayList;
 public class Monk extends Base_Unit{
     private int damage, spell;
 
-    public Monk(int x, int y, String type, String name, int health, int damageMin, int damageMax, int speed, int def, int attack, int damage, int spell) {
+    public Monk(double x, double y, String type, String name, int health, int damageMin, int damageMax, int speed, int def, int attack, int damage, int spell) {
         super(x, y, type, name, health, damageMin, damageMax, speed, def, attack);
         this.damage = damage;
         this.spell = 5;
     }
 
-    public Monk(int x, int y, String name) {
+    public Monk(double x, double y, String name) {
         super(x,y, "\uD83D\uDE4F", name, 30,0,0,5, 7,12);
         this.damage = 2;
         this.spell = 5;
@@ -45,15 +45,15 @@ public class Monk extends Base_Unit{
             targetOnw.setHealth(coords.getClosest(enemyTeam).getHealth() + this.spell);
 
             Base_Unit targetEmemy = coords.getClosest(enemyTeam);
-            if (coords.getDistance(targetEmemy.getX(), targetEmemy.getY()) <= 3) {
-                System.out.println(this.type+" my target is "+targetEmemy.type+" "+targetEmemy.name+" distance: "+coords.getDistance(targetEmemy.getX(), targetEmemy.getY()));
+            if (coords.getDistance(targetEmemy.getX(), targetEmemy.getY()) <= 1) {
+                System.out.println(this.type+" "+ name+" I`m striking "+targetEmemy.type +" "+ targetEmemy.name+". His health "+targetEmemy.health+" now");
                 targetEmemy.setHealth(coords.getClosest(enemyTeam).getHealth() - this.damage);
             }
         }
     }
     @Override
     public String getInfo() {
-        return type+" " +name+"- health: "+health+"             ";}
+        return type+" " +name+"- health: "+health+",              "+"X: "+this.getX()+", Y: "+this.getY();}
     public String toString() {
         return type +
                 "        name = " + name + ", " +

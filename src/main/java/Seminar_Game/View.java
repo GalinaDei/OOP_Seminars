@@ -18,9 +18,9 @@ public class View {
     }
 
     static String formatDiv(String str) {
-        return str.replace('a', '\u250c')
-                .replace('b', '\u252c')
-                .replace('c', '\u2510')
+        return str.replace('a', '┌')
+                .replace('b', '┬')
+                .replace('c', '┐')
                 .replace('d', '\u251c')
                 .replace('e', '\u253c')
                 .replace('f', '\u2524')
@@ -37,9 +37,9 @@ public class View {
         for (int i = 0; i < l[0] * 2; i++) System.out.print("_");
         System.out.println();
         System.out.print(top10 + "    ");
-        System.out.print("Green side");
-        for (int i = 0; i < l[0] - 9; i++) System.out.print(" ");
-        System.out.println(":\tBlue side");
+        System.out.print("Left side");
+        for (int i = 0; i < 50; i++) System.out.print(" ");
+        System.out.println("\tRight side");
         for (int i = 1; i < 11; i++) {
             for (int j = 1; j < 11; j++) {
                 for (int k = 0; k < array.size(); k++) {
